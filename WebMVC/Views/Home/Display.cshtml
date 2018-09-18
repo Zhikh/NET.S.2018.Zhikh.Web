@@ -1,0 +1,12 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<WebMVC.Models.PictureModel>
+
+@foreach (var item in Model)
+{
+    <img src="@Url.Action("GetImage", new { id = item.Id })" style="width:100%">
+}
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<div class="btn btn-info">
+    @Html.PagedListPager(Model, page => Url.Action("Display", new { page }))
+</div>
